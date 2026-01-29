@@ -107,6 +107,9 @@ const ModelInner = ({
                 if (fadeIn) {
                     o.material.transparent = true;
                     o.material.opacity = 0;
+                } else {
+                    o.material.opacity = 1;
+                    o.material.transparent = false;
                 }
             }
         });
@@ -140,7 +143,10 @@ const ModelInner = ({
                 }
             }, 16);
             return () => clearInterval(id);
-        } else onLoaded?.();
+        } else {
+            invalidate();
+            onLoaded?.();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [content]);
 
@@ -426,7 +432,7 @@ const ModelViewer = ({
 
             <Canvas
                 shadows
-                frameloop="demand"
+                frameloop="always"
                 gl={{ preserveDrawingBuffer: true, alpha: true }}
                 onCreated={({ gl, scene, camera }) => {
                     rendererRef.current = gl;
@@ -474,7 +480,7 @@ const ModelViewer = ({
                     <DesktopControls pivot={pivot} min={minZoomDistance} max={maxZoomDistance} zoomEnabled={enableManualZoom} />
                 )}
             </Canvas>
-        </div>
+        </div >
     );
 };
 

@@ -102,12 +102,14 @@ const Index = () => {
                     height="600px"
                     autoRotate={true}
                     autoRotateSpeed={1.5}
-                    enableManualRotation={true}
+                    enableManualRotation={false}
                     enableMouseParallax={false}
                     enableHoverRotation={false}
+                    enableManualZoom={false}
                     autoFrame={false}
-                    defaultZoom={4}
-                    modelYOffset={0}
+                    defaultZoom={3}
+                    modelYOffset={-0.8}
+                    fadeIn={false}
                     environmentPreset="city"
                 />
             </section>
